@@ -12,13 +12,13 @@ router.get('/cliente/listar', async (req, res) => {
 router.post('/cliente/registro', async (req, res) => {
     try {
 
-        const { nome, email, carrinho, dinheiro } = req.body;
+        const { nome, email, idade, telefone } = req.body;
 
         const cliente = await Cliente.create({
             nome,
             email,
-            carrinho,
-            dinheiro
+            idade,
+            telefone
         });
 
         res.status(201).json(cliente);

@@ -4,8 +4,8 @@ const schema = new mongoose.Schema(
     {
         nome: {type: String, required:true},
         email: {type: String, required:true},
-        carrinho: [],
-        dinheiro: {type: Number, required:true},
+        idade: {type: Number, required:true},
+        telefone: {type: String, required:true}
     }
 )
 

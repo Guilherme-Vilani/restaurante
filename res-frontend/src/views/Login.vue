@@ -17,12 +17,21 @@
       ></el-input>
     </div>
 
-    <el-button
+    <div>
+      <el-button
       @click="redirectHome"
       class="button-entrar"
       style=""
-      type="primary"
+      type="success"
       >Entrar</el-button
+    >
+    </div>
+    <el-button
+      @click="redirectCadastro"
+      class="button-entrar"
+      style=""
+      type="primary"
+      >Cadastre-se</el-button
     >
   </div>
 </template>
@@ -37,7 +46,12 @@ export default {
   },
 
   methods: {
-    redirectHome() {},
+    redirectHome() {
+      this.$router.push('/home')
+    },
+    redirectCadastro(){
+      this.$router.push('/cadastro')
+    }
   },
 };
 </script>
