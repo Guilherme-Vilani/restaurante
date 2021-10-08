@@ -33,31 +33,24 @@
         </el-card>
       </li>
     </ul>
-    <el-dialog v-show="selecionou" title="Confirmar pedido?">
-      <el-form-item label="Promotion name" :label-width="formLabelWidth">
-        <el-input autocomplete="off"></el-input>
-      </el-form-item>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="selecionou = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false"
-          >Confirm</el-button
-        >
-      </span>
-    </el-dialog>
+    <Modal :pedido="teste" v-show="selecionou"></Modal>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Modal from "./Modal.vue"
 export default {
   data() {
     return {
       msg: "Foods do Guilherme",
       selecionou: false,
       lstEstabelecimento: [],
-      lstCardapio: [],
-      formLabelWidth: "120px",
+      lstCardapio: []
     };
+  },
+  components: {
+    Modal
   },
   name: "Home",
   props: {},
