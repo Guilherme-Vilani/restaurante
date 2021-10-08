@@ -1,8 +1,9 @@
 <template>
   <div class="center">
-    <p class="titulo">Login Cliente</p>
+    <p class="titulo">Login Estabelecimento</p>
     <div>
       <el-input
+        
         class="input"
         placeholder="E-mail"
         v-model="login.email"
@@ -10,6 +11,7 @@
     </div>
     <div>
       <el-input
+        
         class="input"
         type="password"
         placeholder="Senha"
@@ -19,7 +21,7 @@
 
     <div>
       <el-button
-        @click="redirectHome"
+        @click="redirectHomeEstabelecimento"
         class="button-entrar"
         style=""
         type="success"
@@ -27,21 +29,12 @@
       >
     </div>
     <el-button
-      @click="redirectCadastro"
+      @click="redirectCadEstabelecimento"
       class="button-entrar"
       style=""
       type="primary"
       >Cadastre-se</el-button
     >
-    <div>
-      <el-button
-        @click="redirectCadastroEstabelecimento"
-        class="button-entrar"
-        style=""
-        type="warning"
-        >Estabelecimento</el-button
-      >
-    </div>
   </div>
 </template>
 
@@ -54,39 +47,29 @@ export default {
         email: "",
         senha: "",
       },
-      id: "",
+      id:""
     };
   },
-
+  name: "Login Estabelecimento",
   methods: {
-    redirectHome() {
+    redirectHomeEstabelecimento() {
       axios
-        .post("http://localhost:3001/cliente/login", this.login)
+        .post("http://localhost:3001/estabelecimento/login", this.login)
         .then((response) => {
           this.id = response.data._id;
           localStorage.id = this.id;
-          this.$router.push("/home");
+          this.$router.push("/home-estabelecimento");
         })
         .catch(() => {
           this.notifyError();
         });
     },
-    redirectCadastro() {
-      this.$router.push("/cadastro");
-    },
-    redirectCadastroEstabelecimento() {
-      this.$router.push("/login-estabelecimento");
-    },
-    notifyError() {
-      this.$notify.error({
-        title: "Email e Senha não encontrados!",
-        message: "Verifique o Email e Senha e tente novamente.",
-      });
+    redirectCadEstabelecimento() {
+      this.$router.push("/cad-estabelecimento");
     },
   },
 };
 </script>
-
 
 <style scoped>
 .center {

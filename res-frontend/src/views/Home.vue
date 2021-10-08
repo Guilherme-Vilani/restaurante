@@ -1,12 +1,10 @@
 <template>
   <div class="app">
+    <!-- <NavTab /> -->
     <img src="https://img.icons8.com/clouds/100/000000/restaurant.png" />
     <h1>{{ msg }}</h1>
     <!-- <el-button class="button" type="success">Cardapio</el-button> -->
     <!-- <el-button class="button" type="success">Carrinho</el-button> -->
-    <!-- <div>
-      {{ this.$dataCliente }}
-    </div> -->
     <ul>
       <li
         class="teste"
@@ -17,7 +15,7 @@
         <el-card class="card">
           <img class="image" :src="item.image" alt="" />
           <el-collapse>
-            <el-collapse-item :title="item.nome">
+            <el-collapse-item :title="item.razaoSocial">
               <div
                 v-for="itemCardapio in item.cardapio"
                 :key="itemCardapio.nome"
@@ -66,6 +64,7 @@
 
 <script>
 import axios from "axios";
+// import NavTab from "../components/NavTab.vue"
 export default {
   data() {
     return {
@@ -75,16 +74,17 @@ export default {
       selecionou: false,
       itemSelecionado: "",
       itemAll: [],
-      dadosCliente: {},
       pedido: {
         nome: "",
-        valor: "", //this.itemSelecionado.valor,
-        idEstabelecimento: "", //this.lstCardapio._id,
-        idCliente: "", //"teste",
+        valor: "",
+        idEstabelecimento: "",
+        idCliente: "",
       },
     };
   },
-  components: {},
+  components: {
+    // NavTab
+  },
   name: "Home",
   props: {},
   methods: {
@@ -101,7 +101,7 @@ export default {
       this.pedido.nome = this.itemSelecionado.nome;
       this.pedido.valor = this.itemSelecionado.valor;
       this.pedido.idEstabelecimento = this.itemAll._id;
-      this.pedido.idCliente = "teste";
+      this.pedido.idCliente = localStorage.id;
       this.selecionou = true;
     },
     fechaModal() {
@@ -125,8 +125,6 @@ export default {
       .get("http://localhost:3001/estabelecimento/listar")
       .then((response) => (this.lstEstabelecimento = response.data));
     this.lstCardapio = this.lstEstabelecimento;
-
-    console.log(this.dadosCliente)
   },
 };
 </script>

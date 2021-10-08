@@ -27,16 +27,23 @@ router.post('/pedido/registro', async (req, res) => {
     }
 })
 
-// router.delete('/cliente/excluir/:id', async (req, res) => {
-//     Cliente
-//         .findByIdAndRemove(req.params.id).then(doc => {
-//             if (!doc) {
-//                 return res.status(404).send();
-//             }
-//             res.send(doc);
-//         }).catch(err => {
-//             res.status(500).send(err);
-//         })
-// })
+router.post('/pedido/listar/:id', async (req, res) => {
+    let pedidos = await pedidoService.list()
+    const result = pedidos.filter(pedido => pedido.params.id)
+    res.json(result);
+    console.log(result)
+})
+
+router.delete('/cliente/excluir/:id', async (req, res) => {
+    Cliente
+        .findByIdAndRemove(req.params.id).then(doc => {
+            if (!doc) {
+                return res.status(404).send();
+            }
+            res.send(doc);
+        }).catch(err => {
+            res.status(500).send(err);
+        })
+})
 
 module.exports = (app) => app.use('/', router)
