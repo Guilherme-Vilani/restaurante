@@ -4,6 +4,7 @@ const schema = new mongoose.Schema(
     {
         nome: {type: String, required:true},
         cardapio: [],
+        image: {type: String}
     }
 )
 

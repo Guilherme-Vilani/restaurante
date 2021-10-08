@@ -5,7 +5,7 @@
       <el-input
         class="input"
         placeholder="E-mail"
-        v-model="inputEmail"
+        v-model="login.email"
       ></el-input>
     </div>
     <div>
@@ -13,18 +13,18 @@
         class="input"
         type="password"
         placeholder="Senha"
-        v-model="inputSenha"
+        v-model="login.senha"
       ></el-input>
     </div>
 
     <div>
       <el-button
-      @click="redirectHome"
-      class="button-entrar"
-      style=""
-      type="success"
-      >Entrar</el-button
-    >
+        @click="redirectHome"
+        class="button-entrar"
+        style=""
+        type="success"
+        >Entrar</el-button
+      >
     </div>
     <el-button
       @click="redirectCadastro"
@@ -37,21 +37,39 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      inputEmail: "",
-      inputSenha: "",
+      login: {
+        email: "",
+        senha: "",
+      },
     };
   },
 
   methods: {
     redirectHome() {
-      this.$router.push('/home')
+      axios
+        .post("http://localhost:3001/cliente/login", this.login)
+        .then((response) => {
+          this.$dataCliente = response.data;
+          console.log(this.$dataCliente);
+          this.$router.push("/home");
+        })
+        .catch(() => {
+          this.notifyError();
+        });
     },
-    redirectCadastro(){
-      this.$router.push('/cadastro')
-    }
+    redirectCadastro() {
+      this.$router.push("/cadastro");
+    },
+    notifyError() {
+      this.$notify.error({
+        title: "Email e Senha não encontrados!",
+        message: "Verifique o Email e Senha e tente novamente.",
+      });
+    },
   },
 };
 </script>

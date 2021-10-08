@@ -15,6 +15,7 @@ Vue.use(VueResource);
 Vue.use(axios);
 Vue.use(VueAxios);
 Vue.use(VueRouter);
+Vue.prototype.$dataCliente = {}
 
 const router = new VueRouter({ routes, mode: 'history' });
 

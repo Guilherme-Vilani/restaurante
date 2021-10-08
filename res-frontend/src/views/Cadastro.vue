@@ -18,6 +18,13 @@
     <div>
       <el-input
         class="input"
+        placeholder="Senha"
+        v-model="cliente.senha"
+      ></el-input>
+    </div>
+    <div>
+      <el-input
+        class="input"
         placeholder="Telefone"
         v-model="cliente.telefone"
       ></el-input>
@@ -45,6 +52,7 @@ export default {
         email: "",
         telefone: "",
         idade: "",
+        senha: "",
       },
     };
   },
