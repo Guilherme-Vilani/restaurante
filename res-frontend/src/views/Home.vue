@@ -91,7 +91,7 @@ export default {
     open1() {
       this.$notify({
         title: "Pedido feito com sucesso",
-        message: "O seu pedido já foi enviado para o " + this.itemAll.nome,
+        message: "O seu pedido já foi enviado para o " + this.itemAll.razaoSocial,
         type: "success",
       });
     },
@@ -121,6 +121,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$router.params)
     axios
       .get("http://localhost:3001/estabelecimento/listar")
       .then((response) => (this.lstEstabelecimento = response.data));

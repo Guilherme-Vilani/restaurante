@@ -65,7 +65,7 @@ export default {
         .then((response) => {
           this.id = response.data._id;
           localStorage.id = this.id;
-          this.$router.push("/home");
+          this.$router.push("/home",{ user: response.data});
         })
         .catch(() => {
           this.notifyError();

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavTab />
     <img :src="dadosEstabelecimento.image" alt="" />
 
     <div>
@@ -38,6 +39,7 @@
         </el-card>
       </li>
     </ul>
+
     <div class="modal-mask" v-show="adicionando">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -47,7 +49,7 @@
 
           <div class="modal-body">
             <slot name="body">
-              <input
+              <el-input
                 v-model="cardapio.nome"
                 class="card"
                 placeholder="Nome do prato"
@@ -90,6 +92,7 @@
 
 <script>
 import axios from "axios";
+import NavTab from '../components/NavTab.vue'
 export default {
   data() {
     return {
@@ -102,6 +105,9 @@ export default {
         descricao: "",
       },
     };
+  },
+  components: {
+    NavTab
   },
   methods: {
     salvaPedido() {

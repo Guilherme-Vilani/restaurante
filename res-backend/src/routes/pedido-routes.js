@@ -27,11 +27,14 @@ router.post('/pedido/registro', async (req, res) => {
     }
 })
 
-router.post('/pedido/listar/:id', async (req, res) => {
-    let pedidos = await pedidoService.list()
-    const result = pedidos.filter(pedido => pedido.params.id)
-    res.json(result);
-    console.log(result)
+router.get('/pedido/listar/:id', async (req, res) => {
+    let pedido = await pedidoService.list()
+    var teste = pedido.filter(element => element.idEstabelecimento == req.params.id);
+    if (teste) {
+        res.json(teste);
+    } else {
+        res.sendStatus(404)
+    }
 })
 
 router.delete('/cliente/excluir/:id', async (req, res) => {
