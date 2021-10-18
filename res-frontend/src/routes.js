@@ -5,6 +5,7 @@ import Estabelecimento from './views/LoginEstabelecimento.vue'
 import CadEstabelecimento from "./views/CadastroEstabelecimento.vue"
 import HomeEstabelecimento from "./views/HomeEstabelecimento.vue"
 import Pedido from './views/Pedido.vue'
+import ModalCartaoCredito from './components/cartaoCredito.vue'
 
 
 export const routes = [
@@ -14,6 +15,6 @@ export const routes = [
     {path: '/login-estabelecimento', component: Estabelecimento, name: 'Login Estabelecimento'},
     {path: '/cad-estabelecimento', component: CadEstabelecimento, name: 'Cadastro Estabelecimento'},
     {path: '/home-estabelecimento', component: HomeEstabelecimento, name: 'Home Estabelecimento'},
-    {path: '/pedido', component: Pedido, name: 'Pedido'}
-
+    {path: '/pedido', component: Pedido, name: 'Pedido'},
+    {path: '/cad-cartao', component: ModalCartaoCredito, name: 'CadCartao'},
 ];

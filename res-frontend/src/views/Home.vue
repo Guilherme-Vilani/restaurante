@@ -1,10 +1,15 @@
 <template>
   <div class="app">
     <!-- <NavTab /> -->
-    <img src="https://img.icons8.com/clouds/100/000000/restaurant.png" />
+    <el-col>
+      <img src="https://img.icons8.com/clouds/100/000000/restaurant.png" />
+      <img
+        class="img"
+        @click="abreModalCadastroCartao()"
+        src="https://img.icons8.com/ios/50/000000/bank-card-back-side.png"
+      />
+    </el-col>
     <h1>{{ msg }}</h1>
-    <!-- <el-button class="button" type="success">Cardapio</el-button> -->
-    <!-- <el-button class="button" type="success">Carrinho</el-button> -->
     <ul>
       <li
         class="teste"
@@ -91,7 +96,8 @@ export default {
     open1() {
       this.$notify({
         title: "Pedido feito com sucesso",
-        message: "O seu pedido já foi enviado para o " + this.itemAll.razaoSocial,
+        message:
+          "O seu pedido já foi enviado para o " + this.itemAll.razaoSocial,
         type: "success",
       });
     },
@@ -103,6 +109,9 @@ export default {
       this.pedido.idEstabelecimento = this.itemAll._id;
       this.pedido.idCliente = localStorage.id;
       this.selecionou = true;
+    },
+    abreModalCadastroCartao(){
+      this.$router.push("/cad-cartao");
     },
     fechaModal() {
       this.selecionou = false;
@@ -121,7 +130,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$router.params)
+    console.log(this.$router.params);
     axios
       .get("http://localhost:3001/estabelecimento/listar")
       .then((response) => (this.lstEstabelecimento = response.data));
@@ -132,6 +141,11 @@ export default {
 
 
 <style scoped>
+.img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 .app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
