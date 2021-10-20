@@ -1,5 +1,18 @@
 <template>
   <div>
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+    >
+      <el-menu-item @click.native="redirectLoginCliente" index="1">Cliente</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">Estabelecimento</template>
+        <el-menu-item @click="redirectCadastroEstabelecimento()" index="2-1">Cadastrar Estabelecimento</el-menu-item>
+        <el-menu-item @click="redirectEstabelecimento()" index="2-2">Login</el-menu-item>
+      </el-submenu>
+    </el-menu>
     <h1>Cadastro Estabelecimento</h1>
     <div>
       <el-input v-model="estabelecimento.razaoSocial" class="input" placeholder="Razão Social"></el-input>
@@ -57,6 +70,18 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    redirectLoginCliente(){
+      this.$router.push("/")
+    },
+    redirectCadastro() {
+      this.$router.push("/cadastro");
+    },
+    redirectEstabelecimento() {
+      this.$router.push("/login-estabelecimento");
+    },
+    redirectCadastroEstabelecimento(){
+      this.$router.push("/cad-estabelecimento");
     },
   },
 };

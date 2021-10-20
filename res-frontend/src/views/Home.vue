@@ -152,7 +152,7 @@ export default {
   color: #2c3e50;
 }
 .card {
-  width: 450px;
+  width: 300px;
   margin-bottom: 10px;
   background-color: #f5ffcf;
 }
